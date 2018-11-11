@@ -32,6 +32,8 @@ final class RY_ECPay_Shipping {
 		add_filter('wc_order_statuses', array(__CLASS__, 'add_statuses'));
 		self::add_order_statuses();
 
+		add_filter( 'woocommerce_reports_order_statuses', array(__CLASS__, 'include_custom_order_status_to_reports'), 20, 1 );
+
 		if( 'yes' === get_option(RY_WT::$option_prefix . 'ecpay_shipping_cvs', 'yes') ) {
 			RY_ECPay_Shipping_Response::init();
 
@@ -136,6 +138,11 @@ final class RY_ECPay_Shipping {
 
 	public static function add_statuses($order_statuses) {
 		$order_statuses['wc-ry-at-cvs'] = _x('Wait pickup (cvs)', 'Order status', 'ry-woocommerce-tools');
+		return $order_statuses;
+	}
+
+	public static function include_custom_order_status_to_reports($order_statuses) {
+		array_push($order_statuses, 'wc-ry-at-cvs');
 		return $order_statuses;
 	}
 
