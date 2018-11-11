@@ -57,7 +57,7 @@ return array(
 		'default' => 'C2C',
 		'options' => array(
 			'C2C' => _x('C2C', 'Cvs type', 'ry-woocommerce-tools'),
-			//'B2C' => _x('B2C', 'Cvs type', 'ry-woocommerce-tools')
+			'B2C' => _x('B2C', 'Cvs type', 'ry-woocommerce-tools')
 		)
 	),
 	array(
